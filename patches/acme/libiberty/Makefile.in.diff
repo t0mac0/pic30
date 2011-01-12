@@ -1,0 +1,8 @@
+106c106
+< SUBDIRS = testsuite
+---
+> SUBDIRS = 
+270c270
+< install: install_to_$(INSTALL_DEST) install-subdir
+---
+> install: 

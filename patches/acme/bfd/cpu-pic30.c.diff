@@ -1,0 +1,16 @@
+301c301
+<          for (; *Microchip && *Microchip != ' '; Microchip++);
+---
+>          for (; *Microchip && *Microchip != '-'; Microchip++);
+330c330,338
+<     fprintf(stderr,"Could not open resource file: %s\n", pic30_resource_file);
+---
+>     // Don't complain about c30_resource.info file..Annoying
+>     //fprintf(stderr,"Could not open resource file: %s\n", pic30_resource_file);
+> 
+>     // Add this so tool version is sane, instead of "Microchip (null)"
+>     if (!pic30_resource_version) {
+>       pic30_resource_version = xmalloc(strlen(version_part1) + 
+>                                        strlen(version_part2) + 40);
+>       sprintf(pic30_resource_version,"%s %s", version_part1, version_part2);
+>     }

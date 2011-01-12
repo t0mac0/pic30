@@ -1,0 +1,10 @@
+1565,1566c1565
+<         host_xm_defines="PROGRAM_PREFIX=\\\"pic30-\\\" ${host_xm_defines}"
+<         host_xm_defines="OMF=\\\"coff\\\" ${host_xm_defines}"
+---
+>         host_xm_defines="PROGRAM_PREFIX=\\\"${program_prefix}\\\" ${host_xm_defines}"
+1575,1576c1574
+<         host_xm_defines="PROGRAM_PREFIX=\\\"pic30-\\\" ${host_xm_defines}"
+<         host_xm_defines="OMF=\\\"elf\\\" ${host_xm_defines}"
+---
+>         host_xm_defines="PROGRAM_PREFIX=\\\"${program_prefix}\\\" ${host_xm_defines}"

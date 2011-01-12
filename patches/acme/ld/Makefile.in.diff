@@ -1,0 +1,8 @@
+117c117
+< SUBDIRS = po
+---
+> SUBDIRS = 
+2259c2259
+< install: install-info
+---
+> install: 

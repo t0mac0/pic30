@@ -1,10 +1,6 @@
 
-These scripts (except the patch scripts) are copied into a patched
-branch to build and install.
+Sources from Microchip.
 
-These scripts are written and tested on Linux.  They should work
-elsewhere, perhaps with some adaptation.  Please send changes and
-additions for other platforms.
+Patches derived from the 3.23 set found on http://www.electricrock.co.nz/blog/microchip-c30/
+which were derived from the Steele set.
 
-John Pritchard, jdp@digivac.net
-Wednesday, 12 Jan 2011
