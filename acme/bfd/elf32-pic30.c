@@ -2466,7 +2466,7 @@ pic30_bfd_reloc_range_check(howto, relocation, abfd, symbol, error_msg)
       case R_PIC30_PCREL_BRANCH:
       case R_PIC30_BRANCH_ABSOLUTE:
         /* valid range is [-32768..32767] and not [-2, -1, 0] */
-        if ((relocation > 0x7FFF) && ~(relocation | 0xC0007FFF))
+        if ((relocation > 0x7FFF) && ~(relocation | 0xFFFFFFFFC0007FFFull))
           {
             *error_msg = (char *) malloc(BUFSIZ);
             sprintf(*error_msg,
@@ -2479,7 +2479,7 @@ pic30_bfd_reloc_range_check(howto, relocation, abfd, symbol, error_msg)
       case R_PIC30_PCREL_DO:
       case R_PIC30_DO_ABSOLUTE:
         /* valid range is [-32768..32767] and not [-2, -1, 0] */
-        if ((relocation > 0x7FFF) && ~(relocation | 0xC0007FFF))
+        if ((relocation > 0x7FFF) && ~(relocation | 0xFFFFFFFFC0007FFFull))
           {
             *error_msg = (char *) malloc(BUFSIZ);
             sprintf(*error_msg,

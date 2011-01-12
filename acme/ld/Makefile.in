@@ -114,7 +114,7 @@ INTLLIBS = @INTLLIBS@
 
 AUTOMAKE_OPTIONS = cygnus dejagnu
 
-SUBDIRS = po
+SUBDIRS = 
 
 tooldir = $(exec_prefix)/$(target_alias)
 
@@ -2256,7 +2256,7 @@ install-data-local:
 
 # We want install to imply install-info as per GNU standards, despite the
 # cygnus option.
-install: install-info
+install: 
 diststuff: info $(EXTRA_DIST)
 distclean-local:
 	rm -rf ldscripts

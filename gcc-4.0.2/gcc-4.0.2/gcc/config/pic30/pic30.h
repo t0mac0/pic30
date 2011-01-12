@@ -281,15 +281,6 @@ enum pic30_builtins
 #undef   STARTFILE_SPEC
 #define   STARTFILE_SPEC   ""
 
-/* making STANDARD_EXEC_PREFIX and STANDARD_BINDIR_PREFIX point to the same
-   directory will cause make_relative_paths to make no change - ie look in the 
-   gcc executable's directory.  */
-#undef STANDARD_EXEC_PREFIX
-#undef STANDARD_BINDIR_PREFIX
-#define STANDARD_EXEC_PREFIX "/bin/"
-#define STANDARD_LIBEXEC_PREFIX "/bin/"
-#define STANDARD_BINDIR_PREFIX "/bin/bin"
-
 /* By default, the GCC_EXEC_PREFIX_ENV prefix is "GCC_EXEC_PREFIX", however
    in a cross compiler, another environment variable might want to be used
    to avoid conflicts with the host any host GCC_EXEC_PREFIX */

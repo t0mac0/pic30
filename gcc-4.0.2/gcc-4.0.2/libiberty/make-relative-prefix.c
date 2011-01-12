@@ -321,7 +321,9 @@ make_relative_prefix (progname, bin_prefix, prefix)
 	    break;
 	}
 
-      if (prog_num <= 0 || i == bin_num)
+      // kunilkuda-131208: Force function to specify relative directories
+      // even if we're installed in standard location
+      if (prog_num <= 0)
 	{
 	  free_split_directories (prog_dirs);
 	  free_split_directories (bin_dirs);

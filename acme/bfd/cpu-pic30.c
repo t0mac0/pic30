@@ -298,7 +298,7 @@ void pic30_update_resource(const char *resource) {
       if ((*Microchip) && ((*Microchip == '_') || (*Microchip == '.'))) {
          Microchip++;
          minor = strtol(Microchip, &Microchip, 0);
-         for (; *Microchip && *Microchip != ' '; Microchip++);
+         for (; *Microchip && *Microchip != '-'; Microchip++);
       }
       pic30_tool_version = major *100 + minor;
       version_part1 = new_version;
@@ -327,7 +327,15 @@ static void process_resource_file(unsigned int mode, unsigned int procID, int de
   }
   rib = read_rib(pic30_resource_file);
   if (rib == 0) {
-    fprintf(stderr,"Could not open resource file: %s\n", pic30_resource_file);
+    // Don't complain about c30_resource.info file..Annoying
+    //fprintf(stderr,"Could not open resource file: %s\n", pic30_resource_file);
+
+    // Add this so tool version is sane, instead of "Microchip (null)"
+    if (!pic30_resource_version) {
+      pic30_resource_version = xmalloc(strlen(version_part1) + 
+                                       strlen(version_part2) + 40);
+      sprintf(pic30_resource_version,"%s %s", version_part1, version_part2);
+    }
     err_return = 1;
     return;
   }
