@@ -7184,7 +7184,7 @@ done
 LIBOBJS="$L"
 
 # We need multilib support, but only if configuring for the target.
-                    ac_config_files="$ac_config_files Makefile testsuite/Makefile"
+                    ac_config_files="$ac_config_files Makefile"
 
           ac_config_commands="$ac_config_commands default"
 

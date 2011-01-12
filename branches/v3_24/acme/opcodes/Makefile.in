@@ -112,7 +112,7 @@ l = @l@
 
 AUTOMAKE_OPTIONS = cygnus
 
-SUBDIRS = po
+SUBDIRS = 
 
 INCDIR = $(srcdir)/../include
 BFDDIR = $(srcdir)/../bfd

@@ -71,7 +71,9 @@ Boston, MA 02111-1307, USA.  */
 #include "tree-gimple.h"
 #include "cgraph.h"
 #include "hashtab.h"
+#ifdef LICENSE_MANAGER
 #include "../../../../../pic30-lm/include/pic30-lm.h"
+#endif
 
 /* fputs_unlocked warning getting on my nerves */
 #undef fputs
@@ -2399,6 +2401,7 @@ void pic30_override_options(void) {
     flag_tree_loop_optimize = 0;
   }
 #endif
+#ifdef LICENSE_MANAGER
   if (pic30_license_valid < 0) {
     /* an invalid license, 
        disable those optimizations turned on by -O2,-O3,-Os */
@@ -2452,6 +2455,7 @@ void pic30_override_options(void) {
 
     #undef NULLIFY
   }
+#endif
   if (pic30_it_option) {
     /* enable instrumented trace */
     char *option,*c;
