@@ -1,0 +1,4 @@
+7187c7187
+<                     ac_config_files="$ac_config_files Makefile testsuite/Makefile"
+---
+>                     ac_config_files="$ac_config_files Makefile"

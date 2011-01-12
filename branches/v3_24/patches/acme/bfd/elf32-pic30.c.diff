@@ -1,0 +1,8 @@
+2469c2469
+<         if ((relocation > 0x7FFF) && ~(relocation | 0xC0007FFF))
+---
+>         if ((relocation > 0x7FFF) && ~(relocation | 0xFFFFFFFFC0007FFFull))
+2482c2482
+<         if ((relocation > 0x7FFF) && ~(relocation | 0xC0007FFF))
+---
+>         if ((relocation > 0x7FFF) && ~(relocation | 0xFFFFFFFFC0007FFFull))

@@ -1,0 +1,56 @@
+732c732
+<     %(program_prefix)%(linker) -omf=%(omf) %l " LINK_PIE_SPEC "%X %{o*} %{A} %{d} %{e*} %{m} %{N} %{n} %{r}\
+---
+>     %(program_prefix)%(linker) %l " LINK_PIE_SPEC "%X %{o*} %{A} %{d} %{e*} %{m} %{N} %{n} %{r}\
+784d783
+< static const char *omf = OMF;
+800c799
+< "%(program_prefix)cc1 -omf=%(omf) -E %{traditional|ftraditional|traditional-cpp:-traditional-cpp}";
+---
+> "%(program_prefix)cc1 -E %{traditional|ftraditional|traditional-cpp:-traditional-cpp}";
+849c848
+< "%(program_prefix)as -omf=%(omf) %(asm_options) %|.s %A ";
+---
+> "%(program_prefix)as %(asm_options) %|.s %A ";
+851c850
+< "%(program_prefix)as -omf=%(omf) %(asm_options) %m.s %A ";
+---
+> "%(program_prefix)as %(asm_options) %m.s %A ";
+988c987
+< 		    %(program_prefix)cc1 -omf=%(omf) -fpreprocessed %{save-temps:%b.i} %{!save-temps:%g.i} \
+---
+> 		    %(program_prefix)cc1 -fpreprocessed %{save-temps:%b.i} %{!save-temps:%g.i} \
+991c990
+< 		%(program_prefix)cc1 -omf=%(omf) %(cpp_unique_options) %(cc1_options)}}}\
+---
+> 		%(program_prefix)cc1 %(cpp_unique_options) %(cc1_options)}}}\
+997c996
+< 		%(program_prefix)cc1 -omf=%(omf) %(cpp_unique_options) %(cc1_options)}}\
+---
+> 		%(program_prefix)cc1 %(cpp_unique_options) %(cc1_options)}}\
+1010c1009
+< 		    %(program_prefix)cc1 -omf=%(omf) -fpreprocessed %{save-temps:%b.i} %{!save-temps:%g.i} \
+---
+> 		    %(program_prefix)cc1 -fpreprocessed %{save-temps:%b.i} %{!save-temps:%g.i} \
+1015c1014
+< 		%(program_prefix)cc1 -omf=%(omf) %(cpp_unique_options) %(cc1_options)\
+---
+> 		%(program_prefix)cc1 %(cpp_unique_options) %(cc1_options)\
+1020c1019
+<    "%{!M:%{!MM:%{!E:%(program_prefix)cc1 -omf=%(omf) -fpreprocessed %i %(cc1_options) %{!fsyntax-only:%(invoke_as)}}}}", 0, 1, 0},
+---
+>    "%{!M:%{!MM:%{!E:%(program_prefix)cc1 -fpreprocessed %i %(cc1_options) %{!fsyntax-only:%(invoke_as)}}}}", 0, 1, 0},
+1023c1022
+<    "%{!M:%{!MM:%{!E:%{!S:%(program_prefix)as -omf=%(omf) %(asm_debug) %(asm_options) %i %A }}}}", 0, 1, 0},
+---
+>    "%{!M:%{!MM:%{!E:%{!S:%(program_prefix)as %(asm_debug) %(asm_options) %i %A }}}}", 0, 1, 0},
+1030c1029
+<        %(program_prefix)as -omf=%(omf) %(asm_debug) %(asm_options) %|.s %A }}}}"
+---
+>        %(program_prefix)as %(asm_debug) %(asm_options) %|.s %A }}}}"
+1035c1034
+<        %(program_prefix)as -omf=%(omf) %(asm_debug) %(asm_options) %m.s %A }}}}"
+---
+>        %(program_prefix)as %(asm_debug) %(asm_options) %m.s %A }}}}"
+1589d1587
+<   INIT_STATIC_SPEC ("omf",                      &omf),

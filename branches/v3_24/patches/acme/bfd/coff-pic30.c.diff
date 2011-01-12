@@ -1,0 +1,8 @@
+2363c2363
+<         if ((relocation > 0x7FFF) && ~(relocation | 0xC0007FFF))
+---
+>         if ((relocation > 0x7FFF) && ~(relocation | 0xFFFFFFFFC0007FFFull))
+2376c2376
+<         if ((relocation > 0x7FFF) && ~(relocation | 0xC0007FFF))
+---
+>         if ((relocation > 0x7FFF) && ~(relocation | 0xFFFFFFFFC0007FFFull))

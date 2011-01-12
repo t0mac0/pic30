@@ -1,0 +1,4 @@
+105c105
+< SUBDIRS = testsuite
+---
+> SUBDIRS = 

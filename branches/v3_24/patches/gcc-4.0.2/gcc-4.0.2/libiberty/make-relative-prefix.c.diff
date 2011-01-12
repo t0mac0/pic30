@@ -1,0 +1,6 @@
+324c324,326
+<       if (prog_num <= 0 || i == bin_num)
+---
+>       // kunilkuda-131208: Force function to specify relative directories
+>       // even if we're installed in standard location
+>       if (prog_num <= 0)
