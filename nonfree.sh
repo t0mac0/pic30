@@ -38,6 +38,10 @@ then
     then
 	rm -rf ${MPLAB_C30_WIN32}/examples
     fi
+    if [ -e ${MPLAB_C30_WIN32}/docs ]
+    then
+	rm -rf ${MPLAB_C30_WIN32}/docs
+    fi
     if chmdirs
     then
 	if chmfils
