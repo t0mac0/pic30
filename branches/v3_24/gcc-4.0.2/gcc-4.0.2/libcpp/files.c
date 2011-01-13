@@ -204,8 +204,11 @@ open_file (_cpp_file *file)
       file->fd = 0;
       set_stdin_to_binary_mode ();
     }
-  else
+  else {
+      printf("libcpp.open_file(%s)\n",file->path);
+
     file->fd = open (file->path, O_RDONLY | O_NOCTTY | O_BINARY, 0666);
+  }
 
   if (file->fd != -1)
     {
@@ -411,6 +414,8 @@ _cpp_find_file (cpp_reader *pfile, const char *fname, cpp_dir *start_dir, bool f
     return entry->u.file;
 
   file = make_cpp_file (pfile, start_dir, fname);
+
+  printf("libcpp.find_file(%s)\n",file->path);
 
   /* Try each path in the include chain.  */
   for (; !fake ;)
