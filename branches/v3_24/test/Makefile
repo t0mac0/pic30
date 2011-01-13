@@ -1,75 +1,50 @@
-#
-# Makefile for C30 based projects
-# Version 0.1
-# (C) 2010 Matt Jervis <dev@electricrock.co.nz>
-# http://www.electricrock.co.nz/blog
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; version 3 of the License.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
 
-TARGET=test.hex
+TARGET_HEX=test.hex
 
 PART=30f4013
 
 PARTFAMILY=dsPIC30F
-#PARTFAMILY=dsPIC33F
-#PARTFAMILY=pic24H
-#PARTFAMILY=pic24L
 
-GCC=pic30-gcc
+CC=pic30-gcc
 AS=pic30-as
 LD=pic30-ld
+BX=pic30-bin2hex
 
-C30PATH=/usr/local/pic30
+PIC30=/usr/local/pic30
 
-SRCS=$(wildcard *.c) \
-#	$(wildcard src/*.c) \
-#	$(wildcard src/dir1/*.c)
+SRCS=$(wildcard *.c)
 
-INCLUDEPATH=.\
-#	./include 
+HEADERS=$(wildcard *.h)
 
-# If you want to on-chip debug then you probably want -O0 (I think)
-CFLAGS=-g -O2
+INCLUDEPATH=-I$(PIC30)/support/$(PARTFAMILY)/h -I$(PIC30)/include
 
-# Comment out the second lib here if you don't need the periphal libraries
+#CFLAGS=-g -O2
+
 LIBS=	-lpic30 \
 	-lp$(subst f,F,$(PART))
 
-# ----------------------------------------------------------------------------
-#
-LIBPATH=-L$(C30PATH)/lib \
-	-L$(C30PATH)/lib/$(PARTFAMILY)
+LIBPATH=-L$(PIC30)/lib \
+	-L$(PIC30)/lib/$(PARTFAMILY)
 
-LINKERSCRIPT=$(C30PATH)/support/$(PARTFAMILY)/gld/p$(PART).gld
+LINKERSCRIPT=$(PIC30)/support/$(PARTFAMILY)/gld/p$(PART).gld
 
-
+TARGET_COFF=$(patsubst %.hex, %.coff, $(TARGET_HEX))
 OBJS=$(patsubst %.c, %.o, $(SRCS))
 LSTS=$(patsubst %.c, %.lst, $(SRCS))
 ASMS=$(patsubst %.c, %.s, $(SRCS))
 
-HEADERS=$(wildcard *.h)
 
+$(TARGET_HEX): $(TARGET_COFF)
+	$(BX) $(TARGET_COFF)
 
-.PHONY: target
-target: $(TARGET)
+$(TARGET_COFF): $(OBJS)
+	$(LD) $(LIBPATH) $(LIBS) -T$(LINKERSCRIPT) -o $@ $^
 
-.PHONY: assembly
-assembly: $(ASMS)
+%.s:	%.c $(HEADERS)
+	$(CC) $(INCLUDEPATH) -S -mcpu=$(PART) $(CFLAGS) -o $@ $<
 
-.PHONY: objects
-objects: $(OBJS)
-
-.PHONY: all
-all: target assembly objects
-
+%.o:	%.c $(HEADERS)
+	$(CC) $(INCLUDEPATH) -c -mcpu=$(PART) $(CFLAGS) -o $@ $<
 
 .PHONY: clean
 clean:
@@ -77,12 +52,3 @@ clean:
 	-rm $(TARGET)
 	-rm $(LSTS)
 	-rm $(ASMS)
-
-%.s:	%.c $(HEADERS)
-	$(GCC) -S -mcpu=$(PART) $(CFLAGS) -o $@ $<
-
-%.o:	%.c $(HEADERS)
-	$(GCC) -c -mcpu=$(PART) $(CFLAGS) -o $@ $<
-
-$(TARGET): $(OBJS)
-	$(LD) $(LIBPATH) $(LIBS) -T$(LINKERSCRIPT) -o $@ $^
