@@ -406,6 +406,8 @@ static void hook_void_charptr_charptr_int (const char *sysroot ATTRIBUTE_UNUSED,
 
 #ifndef TARGET_EXTRA_INCLUDES
 #define TARGET_EXTRA_INCLUDES hook_void_charptr_charptr_int
+#else
+#error 
 #endif
 #ifndef TARGET_EXTRA_PRE_INCLUDES
 #define TARGET_EXTRA_PRE_INCLUDES hook_void_charptr_charptr_int

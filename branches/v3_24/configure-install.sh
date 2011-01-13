@@ -38,7 +38,7 @@ then
 				echo "$0 Error running 'make install'." >&2
 				exit 1
 			    else
-				if ! sudo $(dirname $0 )/instalink.sh
+				if ! sudo ${TOPD}/instalink.sh
 				then
 				    echo "$0 Error symlinking in ${C30_INSTALL}." >&2
 				    exit 1
