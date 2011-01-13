@@ -65,14 +65,14 @@ Boston, MA 02111-1307, USA.  */
 #include "insn-codes.h"
 #include "basic-block.h"
 #include "version.h"
-#include "../../../../../c30_resource/src/c30/resource_info.h"
+#include "../../../../c30_resource/src/c30/resource_info.h"
 #include "c-incpath.h"
 #include "tm_p.h"
 #include "tree-gimple.h"
 #include "cgraph.h"
 #include "hashtab.h"
 #ifdef LICENSE_MANAGER
-#include "../../../../../pic30-lm/include/pic30-lm.h"
+#include "../../../../pic30-lm/include/pic30-lm.h"
 #endif
 
 /* fputs_unlocked warning getting on my nerves */
