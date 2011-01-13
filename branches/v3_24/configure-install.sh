@@ -9,7 +9,7 @@ then
     system="local"
 fi
 
-CGLAGS="-DMCHP_VERSION=v${MCHP_VERSION}-${system}"
+CFLAGS="-DMCHP_VERSION=v${MCHP_VERSION}-${system}"
 
 
 if cd ${BINUTILS_DIR}
