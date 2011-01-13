@@ -1,6 +1,15 @@
 #!/bin/bash
 
+set -a
+
 source $(dirname $0 )/env.sh
+
+if ! system=$(2>/dev/null uname -s) || [ -z "${system}" ]
+then
+    system="local"
+fi
+
+CGLAGS="-DMCHP_VERSION=v${MCHP_VERSION}-${system}"
 
 
 if cd ${BINUTILS_DIR}
@@ -8,7 +17,7 @@ then
     if ./configure --prefix=${C30_INSTALL} --target=pic30-coff
     then
 
-	find . -name "*.y" -o -name "*.l" -exec touch '{}' ';'
+	find ${BINUTILS_DIR} -path '*/.svn' -prune -o -name "*.y" -o -name "*.l" -exec touch '{}' ';'
 
 	if make
 	then
@@ -20,7 +29,7 @@ then
 		    if ${GCC_DIR}/gcc-${GCC_VERSION}/configure --prefix=${C30_INSTALL} --target=pic30-coff --enable-languages=c
 		    then
 
-			find . -name "*.y" -o -name "*.l" -exec touch '{}' ';'
+			find ${GCC_DIR} -path '*/.svn' -prune -o -name "*.y" -o -name "*.l" -exec touch '{}' ';'
 
 			if make
 			then
