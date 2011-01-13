@@ -4,12 +4,7 @@ set -a
 
 source $(dirname $0 )/env.sh
 
-if ! system=$(2>/dev/null uname -s) || [ -z "${system}" ]
-then
-    system="local"
-fi
-
-CFLAGS="-DMCHP_VERSION=v${MCHP_VERSION}-${system}"
+CFLAGS="-DMCHP_VERSION=v${MCHP_VERSION}-${SYSTEM_NAME}"
 
 
 if cd ${BINUTILS_DIR}
@@ -42,6 +37,10 @@ then
 				then
 				    echo "$0 Error symlinking in ${C30_INSTALL}." >&2
 				    exit 1
+				else
+				    echo >&2
+				    echo "$0 Completed configure, build, and install." >&2
+				    exit 0
 				fi
 			    fi
 			else
