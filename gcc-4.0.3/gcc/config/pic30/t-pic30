@@ -1,0 +1,8 @@
+# Replacement t-pic30, by John Steele Scott
+# 22/2/2004
+# The original t-pic30 file from Microchip C30 1.30 has no effect, this one
+# lets the build succeed by disabling the libgcc target.
+ 
+LIBGCC = 
+INSTALL_LIBGCC = 
+
