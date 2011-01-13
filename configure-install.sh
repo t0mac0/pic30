@@ -19,9 +19,9 @@ then
 	    if sudo make install
 	    then
 
-		if cd ${GCC_DIR}/build
+		if cd ${GCC_DIR}-build
 		then
-		    if ${GCC_DIR}/gcc-${GCC_VERSION}/configure --prefix=${C30_INSTALL} --target=pic30-coff --enable-languages=c
+		    if ${GCC_DIR}/configure --prefix=${C30_INSTALL} --target=pic30-coff --enable-languages=c
 		    then
 
 			find ${GCC_DIR} -path '*/.svn' -prune -o -name "*.y" -o -name "*.l" -exec touch '{}' ';'
@@ -44,27 +44,27 @@ then
 				fi
 			    fi
 			else
-			    echo "$0 Error running make in ${GCC_DIR}/build" >&2
+			    echo "$0 Error running make in ${GCC_DIR}-build" >&2
 			    exit 1
 			fi
 		    else
-			echo "$0 Error running configure in ${GCC_DIR}/build" >&2
+			echo "$0 Error running configure in ${GCC_DIR}-build" >&2
 			exit 1
 		    fi
 		else
-		    echo "$0 Error directory not found GCC_DIR/build=${GCC_DIR}/build." >&2
+		    echo "$0 Error directory not found {GCC_DIR}-build=${GCC_DIR}-build." >&2
 		    exit 1
 		fi
 	    else
-		echo "$0 Error running make install in ${BINUTILS_DIR}/acme" >&2
+		echo "$0 Error running make install in ${BINUTILS_DIR}" >&2
 		exit 1
 	    fi
 	else
-	    echo "$0 Error running make in ${BINUTILS_DIR}/acme" >&2
+	    echo "$0 Error running make in ${BINUTILS_DIR}" >&2
 	    exit 1
 	fi
     else
-	echo "$0 Error running configure in ${BINUTILS_DIR}/acme" >&2
+	echo "$0 Error running configure in ${BINUTILS_DIR}" >&2
 	exit 1
     fi
 else
