@@ -5,16 +5,13 @@ source $(dirname $0)/env.sh
 function chmdirs {
     while true
     do
-	if dlist=$(find ${MPLAB_C30_WIN32} -type d ! -executable )
+	dlist=$(2>/dev/null find ${MPLAB_C30_WIN32} -type d ! -executable )
+
+	if [ -n "${dlist}" ]
 	then
-	    if [ -n "${dlist}" ]
-	    then
-		chmod 755 ${dlist}
-	    else
-		return 0
-	    fi
+	    chmod 755 ${dlist}
 	else
-	    return 1
+	    return 0
 	fi
     done
 }
@@ -36,11 +33,11 @@ if [ -d ${MPLAB_C30_WIN32} ]
 then
     if [ -e ${MPLAB_C30_WIN32}/examples ]
     then
-	rm -rf ${MPLAB_C30_WIN32}/examples
+	sudo rm -rf ${MPLAB_C30_WIN32}/examples
     fi
     if [ -e ${MPLAB_C30_WIN32}/docs ]
     then
-	rm -rf ${MPLAB_C30_WIN32}/docs
+	sudo rm -rf ${MPLAB_C30_WIN32}/docs
     fi
     if chmdirs
     then
