@@ -415,7 +415,8 @@ _cpp_find_file (cpp_reader *pfile, const char *fname, cpp_dir *start_dir, bool f
 
   file = make_cpp_file (pfile, start_dir, fname);
 
-  printf("libcpp.find_file(%s)\n",file->path);
+  printf("libcpp.find_file(%s)\n",file->name);
+
 
   /* Try each path in the include chain.  */
   for (; !fake ;)
@@ -817,10 +818,15 @@ _cpp_stack_include (cpp_reader *pfile, const char *fname, int angle_brackets,
   struct cpp_dir *dir;
   _cpp_file *file;
 
-  dir = search_path_head (pfile, fname, angle_brackets, type);
-  if (!dir)
-    return false;
+  printf("libcpp.include(%s)\n",fname);
 
+  dir = search_path_head (pfile, fname, angle_brackets, type);
+  if (!dir){
+
+    printf("libcpp.include(%s) => (search-path-head not)\n",fname);
+
+    return false;
+  }
   file = _cpp_find_file (pfile, fname, dir, false, angle_brackets);
 
   /* Compensate for the increment in linemap_add.  In the case of a
