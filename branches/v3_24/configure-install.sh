@@ -4,12 +4,7 @@ set -a
 
 source $(dirname $0 )/env.sh
 
-if ! system=$(2>/dev/null uname -s) || [ -z "${system}" ]
-then
-    system="local"
-fi
-
-CFLAGS="-DMCHP_VERSION=v${MCHP_VERSION}-${system}"
+CFLAGS="-DMCHP_VERSION=v${MCHP_VERSION}-${SYSTEM_NAME}"
 
 
 if cd ${BINUTILS_DIR}
@@ -24,9 +19,9 @@ then
 	    if sudo make install
 	    then
 
-		if cd ${GCC_DIR}/build
+		if cd ${GCC_DIR}-build
 		then
-		    if ${GCC_DIR}/gcc-${GCC_VERSION}/configure --prefix=${C30_INSTALL} --target=pic30-coff --enable-languages=c
+		    if ${GCC_DIR}/configure --prefix=${C30_INSTALL} --target=pic30-coff --enable-languages=c
 		    then
 
 			find ${GCC_DIR} -path '*/.svn' -prune -o -name "*.y" -o -name "*.l" -exec touch '{}' ';'
@@ -42,30 +37,34 @@ then
 				then
 				    echo "$0 Error symlinking in ${C30_INSTALL}." >&2
 				    exit 1
+				else
+				    echo >&2
+				    echo "$0 Completed configure, build, and install." >&2
+				    exit 0
 				fi
 			    fi
 			else
-			    echo "$0 Error running make in ${GCC_DIR}/build" >&2
+			    echo "$0 Error running make in ${GCC_DIR}-build" >&2
 			    exit 1
 			fi
 		    else
-			echo "$0 Error running configure in ${GCC_DIR}/build" >&2
+			echo "$0 Error running configure in ${GCC_DIR}-build" >&2
 			exit 1
 		    fi
 		else
-		    echo "$0 Error directory not found GCC_DIR/build=${GCC_DIR}/build." >&2
+		    echo "$0 Error directory not found {GCC_DIR}-build=${GCC_DIR}-build." >&2
 		    exit 1
 		fi
 	    else
-		echo "$0 Error running make install in ${BINUTILS_DIR}/acme" >&2
+		echo "$0 Error running make install in ${BINUTILS_DIR}" >&2
 		exit 1
 	    fi
 	else
-	    echo "$0 Error running make in ${BINUTILS_DIR}/acme" >&2
+	    echo "$0 Error running make in ${BINUTILS_DIR}" >&2
 	    exit 1
 	fi
     else
-	echo "$0 Error running configure in ${BINUTILS_DIR}/acme" >&2
+	echo "$0 Error running configure in ${BINUTILS_DIR}" >&2
 	exit 1
     fi
 else
