@@ -1,7 +1,7 @@
 
 C30_INSTALL=/usr/local/pic30
 
-GCC_VERSION=4.0.2
+GCC_VERSION=4.0.3
 MCHP_VERSION=3.24
 
 TOPD=$(cd $(dirname $0); pwd)
